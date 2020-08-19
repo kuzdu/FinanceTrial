@@ -9,10 +9,6 @@
 import Foundation
 import UIKit
 
-struct User {
-    let name: String
-}
-
 class DashboardViewController: UIViewController {
     private let user: User
     
