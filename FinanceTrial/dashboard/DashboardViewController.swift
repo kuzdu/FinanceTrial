@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 
-
 struct User {
     let name: String
 }
@@ -28,9 +27,6 @@ class DashboardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         view.backgroundColor = .blue
-        
     }
 }
