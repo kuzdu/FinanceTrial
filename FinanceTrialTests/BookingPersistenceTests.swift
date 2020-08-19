@@ -87,13 +87,13 @@ class BookingPersistenceTests: XCTestCase {
         do {
             let newBooking = Booking(id: UUID(), account: .cash, expenseCategory: .entertainment, amount: 20.0, date: Date())
             try bookingPersistence.addBooking(newBooking)
-
+            
             let newBooking2 = Booking(id: UUID(), account: .cash, expenseCategory: .entertainment, amount: 20.0, date: Date())
             try bookingPersistence.addBooking(newBooking2)
-
+            
             let newBooking3 = Booking(id: UUID(), account: .creditCard, expenseCategory: .entertainment, amount: 20.0, date: Date())
             try bookingPersistence.addBooking(newBooking3)
-
+            
         } catch {
             XCTFail(error.localizedDescription)
         }
@@ -118,12 +118,12 @@ class BookingPersistenceTests: XCTestCase {
         let user = EntityHelper.createUser(bookings: bookings)
         let bookingPersistence = BookingPersistence()
         try bookingPersistence.saveUser(user)
-
+        
         
         // WHEN update an existings booking
         let bookingToUpdateUUID = bookings[4].id
         let bookingToUpdate = Booking(id: bookingToUpdateUUID, account: .bankAccount, expenseCategory: .gym, amount: 99.00, date: Date())
-                  
+        
         do {
             try bookingPersistence.updateBooking(bookingToUpdate)
         } catch {
@@ -156,11 +156,21 @@ class BookingPersistenceTests: XCTestCase {
     
     func testFailUpdateNotFound() throws {
         // GIVEN a user with some bookings
-     
-        // WHEN they are added, the should exist add the user
-       
+        let accountTypes = [AccountType.bankAccount: 3, AccountType.cash: 3, AccountType.creditCard: 3]
+        let bookings = EntityHelper.createBookings(accountTypes: accountTypes)
+        let user = EntityHelper.createUser(bookings: bookings)
+        let bookingPersistence = BookingPersistence()
+        try bookingPersistence.saveUser(user)
         
         
-        // THEN they should exist
+        // WHEN update an non existings booking
+        let notExistingsUUID = UUID()
+        let bookingToUpdate = Booking(id: notExistingsUUID, account: .bankAccount, expenseCategory: .gym, amount: 99.00, date: Date())
+        do {
+            try bookingPersistence.updateBooking(bookingToUpdate)
+        } catch {
+            let notFoundError = error as? InternalError
+            XCTAssertNotNil(notFoundError)
+        }
     }
 }
