@@ -59,7 +59,7 @@ class BookingPersistenceTests: XCTestCase {
         
         // WHEN they are added, the should exist add the user
         do {
-            let newBooking = Booking(account: .cash, expenseCategory: .entertainment, amount: 20.0, date: Date())
+            let newBooking = Booking(id: UUID(), account: .cash, expenseCategory: .entertainment, amount: 20.0, date: Date())
             try bookingPersistence.addBooking(newBooking)
         } catch {
             XCTFail(error.localizedDescription)
@@ -79,20 +79,19 @@ class BookingPersistenceTests: XCTestCase {
         }
     }
     
-    
     func testAddBookingToUserWithoutBookings() throws {
         // GIVEN is no user - it is the first start
         let bookingPersistence = BookingPersistence()
         
         // WHEN a new booking is added there should be a user
         do {
-            let newBooking = Booking(account: .cash, expenseCategory: .entertainment, amount: 20.0, date: Date())
+            let newBooking = Booking(id: UUID(), account: .cash, expenseCategory: .entertainment, amount: 20.0, date: Date())
             try bookingPersistence.addBooking(newBooking)
 
-            let newBooking2 = Booking(account: .cash, expenseCategory: .entertainment, amount: 20.0, date: Date())
+            let newBooking2 = Booking(id: UUID(), account: .cash, expenseCategory: .entertainment, amount: 20.0, date: Date())
             try bookingPersistence.addBooking(newBooking2)
 
-            let newBooking3 = Booking(account: .creditCard, expenseCategory: .entertainment, amount: 20.0, date: Date())
+            let newBooking3 = Booking(id: UUID(), account: .creditCard, expenseCategory: .entertainment, amount: 20.0, date: Date())
             try bookingPersistence.addBooking(newBooking3)
 
         } catch {
@@ -110,5 +109,58 @@ class BookingPersistenceTests: XCTestCase {
         } catch {
             XCTFail(error.localizedDescription)
         }
+    }
+    
+    func testUpdateBooking() throws {
+        // GIVEN a user with some bookings
+        let accountTypes = [AccountType.bankAccount: 3, AccountType.cash: 3, AccountType.creditCard: 3]
+        let bookings = EntityHelper.createBookings(accountTypes: accountTypes)
+        let user = EntityHelper.createUser(bookings: bookings)
+        let bookingPersistence = BookingPersistence()
+        try bookingPersistence.saveUser(user)
+
+        
+        // WHEN update an existings booking
+        let bookingToUpdateUUID = bookings[4].id
+        let bookingToUpdate = Booking(id: bookingToUpdateUUID, account: .bankAccount, expenseCategory: .gym, amount: 99.00, date: Date())
+                  
+        do {
+            try bookingPersistence.updateBooking(bookingToUpdate)
+        } catch {
+            XCTFail(error.localizedDescription)
+        }
+        
+        // THEN the values should be updated
+        do {
+            let loadedUser = try bookingPersistence.loadUser()
+            XCTAssertEqual(9, loadedUser.bookings.count)
+            XCTAssertEqual(4, loadedUser.filterBooking(for: .bankAccount).count)
+            XCTAssertEqual(3, loadedUser.filterBooking(for: .cash).count)
+            XCTAssertEqual(2, loadedUser.filterBooking(for: .creditCard).count)
+            XCTAssertEqual("Michael", loadedUser.name)
+            
+            guard let foundUpdateBooking = loadedUser.bookings.first(where: { $0.id == bookingToUpdateUUID }) else {
+                XCTFail("Not found \(bookingToUpdateUUID)")
+                return
+            }
+            
+            XCTAssertEqual(bookingToUpdate.account, foundUpdateBooking.account)
+            XCTAssertEqual(bookingToUpdate.amount, foundUpdateBooking.amount)
+            XCTAssertEqual(bookingToUpdate.date, foundUpdateBooking.date)
+            XCTAssertEqual(bookingToUpdate.id, foundUpdateBooking.id)
+            XCTAssertEqual(bookingToUpdate.expenseCategory, foundUpdateBooking.expenseCategory)
+        } catch {
+            XCTFail(error.localizedDescription)
+        }
+    }
+    
+    func testFailUpdateNotFound() throws {
+        // GIVEN a user with some bookings
+     
+        // WHEN they are added, the should exist add the user
+       
+        
+        
+        // THEN they should exist
     }
 }

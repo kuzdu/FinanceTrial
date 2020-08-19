@@ -20,15 +20,15 @@ class EntityHelper {
         let numberOfBookingsForCreditCard = accountTypes[.creditCard] ?? 0
         let numberOfBookingsForBankAccounts = accountTypes[.bankAccount] ?? 0
         
-        for _  in (0..<numberOfBookingsForCashs) {
-            bookings.append(Booking(account: .cash, expenseCategory: .tax, amount: 10.0 , date: Date()))
+        for _ in (0..<numberOfBookingsForCashs) {
+            bookings.append(Booking(id: UUID(), account: .cash, expenseCategory: .tax, amount: 10.0 , date: Date()))
         }
         
         for _ in (0..<numberOfBookingsForCreditCard) {
-            bookings.append(Booking(account: .creditCard, expenseCategory: .tax, amount: 10.0 , date: Date()))
+            bookings.append(Booking(id: UUID(), account: .creditCard, expenseCategory: .tax, amount: 10.0 , date: Date()))
         }
         for _ in (0..<numberOfBookingsForBankAccounts) {
-            bookings.append(Booking(account: .bankAccount, expenseCategory: .tax, amount: 10.0 , date: Date()))
+            bookings.append(Booking(id: UUID(), account: .bankAccount, expenseCategory: .tax, amount: 10.0 , date: Date()))
         }
         
         return bookings

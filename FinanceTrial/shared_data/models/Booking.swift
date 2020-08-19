@@ -9,20 +9,23 @@
 import Foundation
 
 struct Booking: Codable {
+    var id: UUID
     var account: AccountType
     var expenseCategory: ExpenseCategory? = nil
     var incomeCategory: IncomeCategory? = nil
     var date: Date
     var amount: Double
     
-    init(account: AccountType, expenseCategory: ExpenseCategory, amount: Double, date: Date) {
+    init(id: UUID, account: AccountType, expenseCategory: ExpenseCategory, amount: Double, date: Date) {
+        self.id = id
         self.account = account
         self.expenseCategory = expenseCategory
         self.amount = amount
         self.date = date
     }
     
-    init(account: AccountType, incomeCategory: IncomeCategory, amount: Double, date: Date) {
+    init(id: UUID, account: AccountType, incomeCategory: IncomeCategory, amount: Double, date: Date) {
+        self.id = id
         self.account = account
         self.incomeCategory = incomeCategory
         self.amount = amount

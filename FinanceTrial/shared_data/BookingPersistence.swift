@@ -10,6 +10,7 @@ import Foundation
 
 enum InternalError: Error {
     case parsingError(String)
+    case notFound(String)
 }
 
 class BookingPersistence {
@@ -67,6 +68,42 @@ class BookingPersistence {
         do {
             var user = try loadUser()
             user.bookings.append(booking)
+            try saveUser(user)
+        } catch {
+            throw error
+        }
+    }
+    
+    func loadBookings() throws -> [Booking] {
+        do {
+            let user = try loadUser()
+            return user.bookings
+        } catch {
+            throw error
+        }
+    }
+    
+    func updateBooking(_ booking: Booking) throws {
+        do {
+            var user = try loadUser()
+            
+            guard let bookingToUpdateIndex = (user.bookings.firstIndex { $0.id == booking.id }) else {
+                throw InternalError.notFound("Bookin with id \(booking.id) not found: maximum is \(user.bookings.count)")
+            }
+            
+            user.bookings[bookingToUpdateIndex] = booking
+            
+            try saveUser(user)
+        } catch {
+            throw error
+        }
+    }
+    
+    func deleteBooking(_ booking: Booking) throws {
+        do {
+            let user = try loadUser()
+            var bookings = user.bookings
+            bookings.removeAll { $0.id == booking.id }
             try saveUser(user)
         } catch {
             throw error

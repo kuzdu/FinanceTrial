@@ -9,23 +9,38 @@
 import Foundation
 
 protocol BookingDelegate {
-    func add(booking: Booking)
-    func edit(booking: Booking)
-    func delete(for index: Int)
+    func add(booking: Booking) throws
+    func edit(booking: Booking) throws
+    func delete(booking: Booking) throws
     func getAccount(for accountType: AccountType)
 }
 
 class BookingRepository: BookingDelegate {
-    func add(booking: Booking) {
-       
+    
+    private let bookingPersistence = BookingPersistence()
+    
+    func add(booking: Booking) throws {
+        do {
+            try bookingPersistence.addBooking(booking)
+        } catch {
+            throw error
+        }
     }
     
-    func edit(booking: Booking) {
-            
+    func edit(booking: Booking) throws {
+        do {
+            try bookingPersistence.updateBooking(booking)
+        } catch {
+            throw error
+        }
     }
     
-    func delete(for index: Int) {
-        
+    func delete(booking: Booking) throws {
+        do {
+            try bookingPersistence.deleteBooking(booking)
+        } catch {
+            throw error
+        }
     }
     
     func getAccount(for accountType: AccountType) {
