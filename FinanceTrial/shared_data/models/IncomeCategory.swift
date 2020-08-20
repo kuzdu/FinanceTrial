@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum IncomeCategory: String, Codable {
+enum IncomeCategory: String, Codable, CaseIterable {
     case salary
     case dividends
 }

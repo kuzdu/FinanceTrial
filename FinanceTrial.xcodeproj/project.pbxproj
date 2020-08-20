@@ -25,6 +25,10 @@
 		A44C3F2A24ED2A4A008042AB /* BookingPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44C3F2924ED2A4A008042AB /* BookingPersistence.swift */; };
 		A44C3F3024ED33F9008042AB /* BookingPersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44C3F2F24ED33F9008042AB /* BookingPersistenceTests.swift */; };
 		A44C3F3524ED3F7F008042AB /* EntityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44C3F3424ED3F7F008042AB /* EntityHelper.swift */; };
+		A44C3F3724EE8273008042AB /* DashboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44C3F3624EE8273008042AB /* DashboardCell.swift */; };
+		A44C3F3C24EE9265008042AB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A44C3F3E24EE9265008042AB /* Localizable.strings */; };
+		A44C3F4124EE9659008042AB /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44C3F4024EE9659008042AB /* DateExtension.swift */; };
+		A44C3F4324EE98D3008042AB /* NumberFormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44C3F4224EE98D3008042AB /* NumberFormatterExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +75,10 @@
 		A44C3F2924ED2A4A008042AB /* BookingPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingPersistence.swift; sourceTree = "<group>"; };
 		A44C3F2F24ED33F9008042AB /* BookingPersistenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingPersistenceTests.swift; sourceTree = "<group>"; };
 		A44C3F3424ED3F7F008042AB /* EntityHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityHelper.swift; sourceTree = "<group>"; };
+		A44C3F3624EE8273008042AB /* DashboardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCell.swift; sourceTree = "<group>"; };
+		A44C3F3D24EE9265008042AB /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A44C3F4024EE9659008042AB /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		A44C3F4224EE98D3008042AB /* NumberFormatterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatterExtension.swift; sourceTree = "<group>"; };
 		BB7809D9B5EBD424BCD28FFA /* Pods_FinanceTrial.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FinanceTrial.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6B6FF328A1ACEAD176CD81D /* Pods-FinanceTrialTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinanceTrialTests.release.xcconfig"; path = "Target Support Files/Pods-FinanceTrialTests/Pods-FinanceTrialTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -147,6 +155,7 @@
 		A44C3EE024EAE077008042AB /* FinanceTrial */ = {
 			isa = PBXGroup;
 			children = (
+				A44C3F3F24EE964F008042AB /* extensions */,
 				A44C3F3124ED37E1008042AB /* TestHelper */,
 				A44C3F1924ED2780008042AB /* shared_data */,
 				A44C3F1724ED2548008042AB /* R.generated.swift */,
@@ -154,6 +163,7 @@
 				A44C3EE124EAE077008042AB /* AppDelegate.swift */,
 				A44C3EEA24EAE078008042AB /* Assets.xcassets */,
 				A44C3EEC24EAE078008042AB /* LaunchScreen.storyboard */,
+				A44C3F3E24EE9265008042AB /* Localizable.strings */,
 				A44C3EEF24EAE078008042AB /* Info.plist */,
 			);
 			path = FinanceTrial;
@@ -182,6 +192,7 @@
 			children = (
 				A44C3F2424ED281D008042AB /* DashboardInteractor.swift */,
 				A44C3F1424EAE560008042AB /* DashboardViewController.swift */,
+				A44C3F3624EE8273008042AB /* DashboardCell.swift */,
 			);
 			path = dashboard;
 			sourceTree = "<group>";
@@ -214,6 +225,15 @@
 				A44C3F3424ED3F7F008042AB /* EntityHelper.swift */,
 			);
 			path = TestHelper;
+			sourceTree = "<group>";
+		};
+		A44C3F3F24EE964F008042AB /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A44C3F4024EE9659008042AB /* DateExtension.swift */,
+				A44C3F4224EE98D3008042AB /* NumberFormatterExtension.swift */,
+			);
+			path = extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -327,6 +347,7 @@
 			files = (
 				A44C3EEE24EAE078008042AB /* LaunchScreen.storyboard in Resources */,
 				A44C3EEB24EAE078008042AB /* Assets.xcassets in Resources */,
+				A44C3F3C24EE9265008042AB /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,7 +474,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A44C3F1B24ED2794008042AB /* User.swift in Sources */,
+				A44C3F4324EE98D3008042AB /* NumberFormatterExtension.swift in Sources */,
+				A44C3F4124EE9659008042AB /* DateExtension.swift in Sources */,
 				A44C3F1524EAE560008042AB /* DashboardViewController.swift in Sources */,
+				A44C3F3724EE8273008042AB /* DashboardCell.swift in Sources */,
 				A44C3F1F24ED27BF008042AB /* IncomeCategory.swift in Sources */,
 				A44C3F2524ED281D008042AB /* DashboardInteractor.swift in Sources */,
 				A44C3F2A24ED2A4A008042AB /* BookingPersistence.swift in Sources */,
@@ -505,6 +529,14 @@
 				A44C3EED24EAE078008042AB /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		A44C3F3E24EE9265008042AB /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A44C3F3D24EE9265008042AB /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

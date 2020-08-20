@@ -9,9 +9,14 @@
 import Foundation
 
 class DashboardInteractor {
-    private let bookingRepository = BookingRepository()
-    
-    func getBookings(accountType: AccountType) {
-        bookingRepository.getAccount(for: accountType)
+    private let bookingRepository = BookingRepository(persistenceDelegate: BookingPersistence())
+
+    func getBookings(accountType: AccountType) -> [Booking] {
+        do {
+            return try bookingRepository.getBookings(for: accountType)
+        } catch {
+            print("Log - Cannot fetch bookings for accountType: \(accountType.rawValue)")
+            return []
+        }
     }
 }

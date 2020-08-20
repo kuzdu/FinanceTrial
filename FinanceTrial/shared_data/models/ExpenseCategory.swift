@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum ExpenseCategory: String, Codable {
+enum ExpenseCategory: String, Codable, CaseIterable {
     case tax
     case grocery
     case entertainment

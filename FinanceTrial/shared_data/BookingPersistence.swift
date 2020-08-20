@@ -13,7 +13,16 @@ enum InternalError: Error {
     case notFound(String)
 }
 
-class BookingPersistence {
+protocol PersistenceDelegate {
+    func loadUser() throws -> User
+    func saveUser(_ user: User) throws
+    func addBooking(_ booking: Booking) throws
+    func loadBookings() throws -> [Booking]
+    func updateBooking(_ booking: Booking) throws
+    func deleteBooking(_ booking: Booking) throws
+}
+
+class BookingPersistence: PersistenceDelegate {
     // MARK: - privates
     private enum PersistenceKeys: String {
         case user = "userKey"

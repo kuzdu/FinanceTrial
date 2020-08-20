@@ -3,8 +3,8 @@ use_frameworks!
 inhibit_all_warnings!
 
 def common_pods
-	pod 'R.swift', 5.2.2
-	pod 'PromiseKit/Alamofire', 6.13.1
+	pod 'R.swift', '5.2.2'
+	pod 'SnapKit', '5.0.1'
 end
 
 

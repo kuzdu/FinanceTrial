@@ -9,6 +9,27 @@
 import Foundation
 
 class EntityHelper {
+    private static func getRandomExpenseCategory() -> ExpenseCategory {
+        return ExpenseCategory.allCases[Int.random(in: 0..<4)]
+    }
+    
+    private static func getRandomIncomeCategory() -> IncomeCategory {
+        return IncomeCategory.allCases[Int.random(in: 0..<1)]
+    }
+    
+    private static func getRandomAmount(_ isPositiv: Bool = true) -> Double {
+        let value = Double.random(in: 0..<100)
+        if isPositiv {
+            return value
+        } else {
+            return value * -1
+        }
+    }
+    
+    private static func shouldUseExpenseCategory() -> Bool {
+        return Int.random(in: 0..<2) == 0
+    }
+    
     static func createUser(bookings: [Booking]) -> User {
         return User(name: "Michael", bookings: bookings)
     }
@@ -21,16 +42,36 @@ class EntityHelper {
         let numberOfBookingsForBankAccounts = accountTypes[.bankAccount] ?? 0
         
         for _ in (0..<numberOfBookingsForCashs) {
-            bookings.append(Booking(id: UUID(), account: .cash, expenseCategory: .tax, amount: 10.0 , date: Date()))
+            if shouldUseExpenseCategory() {
+                bookings.append(Booking(id: UUID(), account: .cash, expenseCategory: getRandomExpenseCategory(), amount: getRandomAmount(false) , date: Date.randomDate(range: 500)))
+            } else {
+                bookings.append(Booking(id: UUID(), account: .cash, incomeCategory: getRandomIncomeCategory(), amount: getRandomAmount() , date: Date.randomDate(range: 500)))
+            }
         }
         
         for _ in (0..<numberOfBookingsForCreditCard) {
-            bookings.append(Booking(id: UUID(), account: .creditCard, expenseCategory: .tax, amount: 10.0 , date: Date()))
+            if shouldUseExpenseCategory() {
+                bookings.append(Booking(id: UUID(), account: .creditCard, expenseCategory: getRandomExpenseCategory(), amount: getRandomAmount(false), date: Date.randomDate(range: 500)))
+            } else {
+                bookings.append(Booking(id: UUID(), account: .creditCard, incomeCategory: getRandomIncomeCategory(), amount: getRandomAmount(), date: Date.randomDate(range: 500)))
+            }
         }
         for _ in (0..<numberOfBookingsForBankAccounts) {
-            bookings.append(Booking(id: UUID(), account: .bankAccount, expenseCategory: .tax, amount: 10.0 , date: Date()))
+            if shouldUseExpenseCategory() {
+                bookings.append(Booking(id: UUID(), account: .bankAccount, expenseCategory: getRandomExpenseCategory(), amount: getRandomAmount(false), date: Date.randomDate(range: 500)))
+            } else {
+                bookings.append(Booking(id: UUID(), account: .bankAccount, incomeCategory: getRandomIncomeCategory(), amount: getRandomAmount(), date: Date.randomDate(range: 500)))
+            }
         }
         
         return bookings
+    }
+    
+    
+    static func createDefaultDummyData() -> User {
+        let accountTypes = [AccountType.bankAccount: 8, AccountType.cash: 12, AccountType.creditCard: 20]
+        let bookings = createBookings(accountTypes: accountTypes)
+        let user = createUser(bookings: bookings)
+        return user
     }
 }

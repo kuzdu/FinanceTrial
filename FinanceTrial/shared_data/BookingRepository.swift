@@ -12,12 +12,15 @@ protocol BookingDelegate {
     func add(booking: Booking) throws
     func edit(booking: Booking) throws
     func delete(booking: Booking) throws
-    func getAccount(for accountType: AccountType)
+    func getBookings(for accountType: AccountType) throws -> [Booking]
 }
 
 class BookingRepository: BookingDelegate {
-    
-    private let bookingPersistence = BookingPersistence()
+    private let bookingPersistence: PersistenceDelegate
+
+    init(persistenceDelegate: PersistenceDelegate) {
+        self.bookingPersistence = persistenceDelegate
+    }
     
     func add(booking: Booking) throws {
         do {
@@ -35,6 +38,7 @@ class BookingRepository: BookingDelegate {
         }
     }
     
+    //TODO: Test schreiben
     func delete(booking: Booking) throws {
         do {
             try bookingPersistence.deleteBooking(booking)
@@ -43,7 +47,25 @@ class BookingRepository: BookingDelegate {
         }
     }
     
-    func getAccount(for accountType: AccountType) {
-        
+    //TODO: test schreiben
+    func getBookings(for accountType: AccountType) throws -> [Booking] {
+        do {
+            let user = try bookingPersistence.loadUser()
+            
+            let limitedBookings = user.filterBooking(for: accountType).sorted {
+                $0.date > $1.date
+            }.prefix(10)
+            
+            return Array(limitedBookings)
+        } catch {
+            throw error
+        }
     }
 }
+
+
+/*
+ Nächste Schritte
+ - UI bauen
+ - Rahmenbedingungen überprüfen (rot für negative Sachen usw.)
+ */

@@ -105,6 +105,74 @@ struct R: Rswift.Validatable {
   }
   #endif
 
+  /// This `R.string` struct is generated, and contains static references to 1 localization tables.
+  struct string {
+    /// This `R.string.localizable` struct is generated, and contains static references to 3 localization keys.
+    struct localizable {
+      /// en translation: Bank Account
+      ///
+      /// Locales: en
+      static let dashboard_section_title_bank_account = Rswift.StringResource(key: "dashboard_section_title_bank_account", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Cash
+      ///
+      /// Locales: en
+      static let dashboard_section_title_cash = Rswift.StringResource(key: "dashboard_section_title_cash", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Credit Card
+      ///
+      /// Locales: en
+      static let dashboard_section_title_credit_card = Rswift.StringResource(key: "dashboard_section_title_credit_card", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+
+      /// en translation: Bank Account
+      ///
+      /// Locales: en
+      static func dashboard_section_title_bank_account(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("dashboard_section_title_bank_account", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "dashboard_section_title_bank_account"
+        }
+
+        return NSLocalizedString("dashboard_section_title_bank_account", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Cash
+      ///
+      /// Locales: en
+      static func dashboard_section_title_cash(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("dashboard_section_title_cash", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "dashboard_section_title_cash"
+        }
+
+        return NSLocalizedString("dashboard_section_title_cash", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Credit Card
+      ///
+      /// Locales: en
+      static func dashboard_section_title_credit_card(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("dashboard_section_title_credit_card", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "dashboard_section_title_credit_card"
+        }
+
+        return NSLocalizedString("dashboard_section_title_credit_card", bundle: bundle, comment: "")
+      }
+
+      fileprivate init() {}
+    }
+
+    fileprivate init() {}
+  }
+
   fileprivate struct intern: Rswift.Validatable {
     fileprivate static func validate() throws {
       try _R.validate()

@@ -15,7 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
-        let homeViewController = DashboardViewController(user: User(name: "Michael", bookings: []))
+        
+        
+        let bookingPersistence = BookingPersistence()
+        try? bookingPersistence.saveUser(EntityHelper.createDefaultDummyData())
+        
+        let homeViewController = DashboardViewController()
         window?.rootViewController = homeViewController
         window?.makeKeyAndVisible()
         return true
