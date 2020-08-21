@@ -20,7 +20,7 @@
 		A44C3F1F24ED27BF008042AB /* IncomeCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44C3F1E24ED27BF008042AB /* IncomeCategory.swift */; };
 		A44C3F2124ED27D3008042AB /* ExpenseCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44C3F2024ED27D3008042AB /* ExpenseCategory.swift */; };
 		A44C3F2324ED27E3008042AB /* AccountType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44C3F2224ED27E3008042AB /* AccountType.swift */; };
-		A44C3F2524ED281D008042AB /* DashboardInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44C3F2424ED281D008042AB /* DashboardInteractor.swift */; };
+		A44C3F2524ED281D008042AB /* BookingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44C3F2424ED281D008042AB /* BookingInteractor.swift */; };
 		A44C3F2824ED298B008042AB /* BookingRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44C3F2724ED298B008042AB /* BookingRepository.swift */; };
 		A44C3F2A24ED2A4A008042AB /* BookingPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44C3F2924ED2A4A008042AB /* BookingPersistence.swift */; };
 		A44C3F3024ED33F9008042AB /* BookingPersistenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44C3F2F24ED33F9008042AB /* BookingPersistenceTests.swift */; };
@@ -30,10 +30,11 @@
 		A44C3F4124EE9659008042AB /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44C3F4024EE9659008042AB /* DateExtension.swift */; };
 		A44C3F4324EE98D3008042AB /* NumberFormatterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44C3F4224EE98D3008042AB /* NumberFormatterExtension.swift */; };
 		A44C3F4624EEA01C008042AB /* AddOrEditBooking.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44C3F4524EEA01C008042AB /* AddOrEditBooking.swift */; };
-		A44C3F4824EEB294008042AB /* AddOrEditBookingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44C3F4724EEB294008042AB /* AddOrEditBookingInteractor.swift */; };
 		A44C3F4A24EFEC80008042AB /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44C3F4924EFEC80008042AB /* Categories.swift */; };
 		A44C3F4C24EFED98008042AB /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44C3F4B24EFED98008042AB /* Logger.swift */; };
 		A44C3F4E24EFF023008042AB /* BaseTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44C3F4D24EFF023008042AB /* BaseTextField.swift */; };
+		A44C3F5024F0312D008042AB /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44C3F4F24F0312D008042AB /* DoubleExtension.swift */; };
+		A44C3F5324F064A6008042AB /* BookingBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44C3F5224F064A6008042AB /* BookingBaseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,7 +76,7 @@
 		A44C3F1E24ED27BF008042AB /* IncomeCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeCategory.swift; sourceTree = "<group>"; };
 		A44C3F2024ED27D3008042AB /* ExpenseCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCategory.swift; sourceTree = "<group>"; };
 		A44C3F2224ED27E3008042AB /* AccountType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountType.swift; sourceTree = "<group>"; };
-		A44C3F2424ED281D008042AB /* DashboardInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardInteractor.swift; sourceTree = "<group>"; };
+		A44C3F2424ED281D008042AB /* BookingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingInteractor.swift; sourceTree = "<group>"; };
 		A44C3F2724ED298B008042AB /* BookingRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingRepository.swift; sourceTree = "<group>"; };
 		A44C3F2924ED2A4A008042AB /* BookingPersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingPersistence.swift; sourceTree = "<group>"; };
 		A44C3F2F24ED33F9008042AB /* BookingPersistenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingPersistenceTests.swift; sourceTree = "<group>"; };
@@ -85,10 +86,11 @@
 		A44C3F4024EE9659008042AB /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		A44C3F4224EE98D3008042AB /* NumberFormatterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatterExtension.swift; sourceTree = "<group>"; };
 		A44C3F4524EEA01C008042AB /* AddOrEditBooking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOrEditBooking.swift; sourceTree = "<group>"; };
-		A44C3F4724EEB294008042AB /* AddOrEditBookingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOrEditBookingInteractor.swift; sourceTree = "<group>"; };
 		A44C3F4924EFEC80008042AB /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
 		A44C3F4B24EFED98008042AB /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		A44C3F4D24EFF023008042AB /* BaseTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTextField.swift; sourceTree = "<group>"; };
+		A44C3F4F24F0312D008042AB /* DoubleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
+		A44C3F5224F064A6008042AB /* BookingBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingBaseViewController.swift; sourceTree = "<group>"; };
 		BB7809D9B5EBD424BCD28FFA /* Pods_FinanceTrial.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FinanceTrial.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6B6FF328A1ACEAD176CD81D /* Pods-FinanceTrialTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinanceTrialTests.release.xcconfig"; path = "Target Support Files/Pods-FinanceTrialTests/Pods-FinanceTrialTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -165,12 +167,10 @@
 		A44C3EE024EAE077008042AB /* FinanceTrial */ = {
 			isa = PBXGroup;
 			children = (
-				A44C3F4424EEA00C008042AB /* add_or_edit_booking */,
+				A44C3F5124F06478008042AB /* booking */,
 				A44C3F3F24EE964F008042AB /* extensions */,
 				A44C3F3124ED37E1008042AB /* TestHelper */,
-				A44C3F1924ED2780008042AB /* shared_data */,
 				A44C3F1724ED2548008042AB /* R.generated.swift */,
-				A44C3F1324EAE556008042AB /* dashboard */,
 				A44C3EE124EAE077008042AB /* AppDelegate.swift */,
 				A44C3EEA24EAE078008042AB /* Assets.xcassets */,
 				A44C3EEC24EAE078008042AB /* LaunchScreen.storyboard */,
@@ -201,7 +201,6 @@
 		A44C3F1324EAE556008042AB /* dashboard */ = {
 			isa = PBXGroup;
 			children = (
-				A44C3F2424ED281D008042AB /* DashboardInteractor.swift */,
 				A44C3F1424EAE560008042AB /* DashboardViewController.swift */,
 				A44C3F3624EE8273008042AB /* DashboardCell.swift */,
 			);
@@ -213,6 +212,7 @@
 			children = (
 				A44C3F2624ED2822008042AB /* models */,
 				A44C3F2924ED2A4A008042AB /* BookingPersistence.swift */,
+				A44C3F2424ED281D008042AB /* BookingInteractor.swift */,
 				A44C3F2724ED298B008042AB /* BookingRepository.swift */,
 				A44C3F4B24EFED98008042AB /* Logger.swift */,
 			);
@@ -244,6 +244,7 @@
 			children = (
 				A44C3F4024EE9659008042AB /* DateExtension.swift */,
 				A44C3F4224EE98D3008042AB /* NumberFormatterExtension.swift */,
+				A44C3F4F24F0312D008042AB /* DoubleExtension.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -252,11 +253,21 @@
 			isa = PBXGroup;
 			children = (
 				A44C3F4524EEA01C008042AB /* AddOrEditBooking.swift */,
-				A44C3F4724EEB294008042AB /* AddOrEditBookingInteractor.swift */,
 				A44C3F4924EFEC80008042AB /* Categories.swift */,
 				A44C3F4D24EFF023008042AB /* BaseTextField.swift */,
 			);
 			path = add_or_edit_booking;
+			sourceTree = "<group>";
+		};
+		A44C3F5124F06478008042AB /* booking */ = {
+			isa = PBXGroup;
+			children = (
+				A44C3F1924ED2780008042AB /* shared_data */,
+				A44C3F1324EAE556008042AB /* dashboard */,
+				A44C3F4424EEA00C008042AB /* add_or_edit_booking */,
+				A44C3F5224F064A6008042AB /* BookingBaseViewController.swift */,
+			);
+			path = booking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -498,6 +509,7 @@
 			files = (
 				A44C3F4C24EFED98008042AB /* Logger.swift in Sources */,
 				A44C3F1B24ED2794008042AB /* User.swift in Sources */,
+				A44C3F5324F064A6008042AB /* BookingBaseViewController.swift in Sources */,
 				A44C3F4E24EFF023008042AB /* BaseTextField.swift in Sources */,
 				A44C3F4324EE98D3008042AB /* NumberFormatterExtension.swift in Sources */,
 				A44C3F4124EE9659008042AB /* DateExtension.swift in Sources */,
@@ -505,16 +517,16 @@
 				A44C3F3724EE8273008042AB /* DashboardCell.swift in Sources */,
 				A44C3F4A24EFEC80008042AB /* Categories.swift in Sources */,
 				A44C3F1F24ED27BF008042AB /* IncomeCategory.swift in Sources */,
-				A44C3F2524ED281D008042AB /* DashboardInteractor.swift in Sources */,
+				A44C3F2524ED281D008042AB /* BookingInteractor.swift in Sources */,
 				A44C3F2A24ED2A4A008042AB /* BookingPersistence.swift in Sources */,
 				A44C3F2324ED27E3008042AB /* AccountType.swift in Sources */,
+				A44C3F5024F0312D008042AB /* DoubleExtension.swift in Sources */,
 				A44C3EE224EAE077008042AB /* AppDelegate.swift in Sources */,
 				A44C3F4624EEA01C008042AB /* AddOrEditBooking.swift in Sources */,
 				A44C3F1824ED2548008042AB /* R.generated.swift in Sources */,
 				A44C3F2824ED298B008042AB /* BookingRepository.swift in Sources */,
 				A44C3F1D24ED27AC008042AB /* Booking.swift in Sources */,
 				A44C3F3524ED3F7F008042AB /* EntityHelper.swift in Sources */,
-				A44C3F4824EEB294008042AB /* AddOrEditBookingInteractor.swift in Sources */,
 				A44C3F2124ED27D3008042AB /* ExpenseCategory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

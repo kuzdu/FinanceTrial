@@ -69,6 +69,7 @@ class DashboardCell: UITableViewCell {
         return label
     }()
     
+    
     var amount: Double? {
         didSet {
             let unwrappedAmount  = amount ?? 0.0
@@ -77,7 +78,7 @@ class DashboardCell: UITableViewCell {
             } else {
                 bookingAmountLabel.textColor = .green
             }
-            bookingAmountLabel.text =  CurrencyService.toCurrency(amount: unwrappedAmount)
+            bookingAmountLabel.text = CurrencyService.toCurrency(amount: unwrappedAmount)
         }
     }
 }

@@ -15,9 +15,8 @@ enum DashboardSectionType {
     case bankAccount
 }
 
-class DashboardViewController: UIViewController {
+class DashboardViewController: BookingBaseViewController {
     private let dashboardSectionTypes: [DashboardSectionType] = [.cash, .bankAccount, .creditCard]
-    private let dashboardInteractor = DashboardInteractor()
     private let dashboardCellId = "DashboardCellIdent"
     
     private var cashBookings: [Booking] = []
@@ -89,14 +88,14 @@ class DashboardViewController: UIViewController {
         dashboardCell.bookingSubtitleLabel.text = booking.date.toString()
     }
     
-    @objc func addOrEditBooking() {
-        goToAddOrEditBooking(with: nil)
-    }
-    
-    func goToAddOrEditBooking(with booking: Booking?) {
+    private func goToAddOrEditBooking(with booking: Booking?) {
         let addOrEditBooking = AddOrEditBooking()
         addOrEditBooking.booking = booking
         self.navigationController?.pushViewController(addOrEditBooking, animated: true)
+    }
+    
+    @objc private func addOrEditBooking() {
+        goToAddOrEditBooking(with: nil)
     }
 }
 
@@ -139,17 +138,42 @@ extension DashboardViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let dashboardSectionType = dashboardSectionTypes[section]
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 40))
+        headerView.backgroundColor = UIColor.gray
         
+        let sectionTitleLabel = UILabel()
+        let sumLabel = UILabel()
+        
+        headerView.addSubview(sectionTitleLabel)
+        headerView.addSubview(sumLabel)
+        
+        sectionTitleLabel.snp.makeConstraints { (make) in
+            make.top.equalToSuperview().offset(8)
+            make.left.equalToSuperview().offset(16)
+            make.bottom.equalToSuperview().offset(-8)
+        }
+        
+        sumLabel.snp.makeConstraints { (make) in
+            make.top.equalToSuperview().offset(8)
+            make.right.equalToSuperview().offset(-16)
+            make.bottom.equalToSuperview().offset(-8)
+        }
+        
+        let dashboardSectionType = dashboardSectionTypes[section]
         switch dashboardSectionType {
         case .cash:
-            return R.string.localizable.dashboard_section_title_cash()
+            sectionTitleLabel.text = R.string.localizable.dashboard_section_title_cash()
+            sumLabel.text = CurrencyService.toCurrency(amount: dashboardInteractor.getSumOfAmount(for: .cash))
         case .creditCard:
-            return R.string.localizable.dashboard_section_title_credit_card()
+            sectionTitleLabel.text = R.string.localizable.dashboard_section_title_credit_card()
+            sumLabel.text = CurrencyService.toCurrency(amount: dashboardInteractor.getSumOfAmount(for: .creditCard))
         case .bankAccount:
-            return R.string.localizable.dashboard_section_title_bank_account()
+            sectionTitleLabel.text = R.string.localizable.dashboard_section_title_bank_account()
+            sumLabel.text = CurrencyService.toCurrency(amount: dashboardInteractor.getSumOfAmount(for: .bankAccount))
         }
+        
+        return headerView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -184,8 +208,15 @@ extension DashboardViewController: UITableViewDelegate, UITableViewDataSource {
                 booking = bankAccountBookings[indexPath.row]
                 bankAccountBookings.remove(at: indexPath.row)
             }
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            
             dashboardInteractor.deleteBooking(booking: booking)
+            
+            tableView.beginUpdates()
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.endUpdates()
+            
+            //TODO: not that smooth animation
+            tableView.reloadData()
         }
     }
 }

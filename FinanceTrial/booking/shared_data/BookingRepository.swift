@@ -62,10 +62,3 @@ class BookingRepository: BookingDelegate {
         }
     }
 }
-
-
-/*
- Nächste Schritte
- - UI bauen
- - Rahmenbedingungen überprüfen (rot für negative Sachen usw.)
- */

@@ -10,10 +10,8 @@ import Foundation
 import UIKit
 import SnapKit
 
-class AddOrEditBooking: UIViewController {
+class AddOrEditBooking: BookingBaseViewController {
     public var booking: Booking?
-    
-    private let addOrEditBookingInteractor = AddOrEditBookingInteractor()
     private var selectedAccount: AccountType = .bankAccount
     private var selectedCategory: Categories = .dividends
     
@@ -171,7 +169,7 @@ class AddOrEditBooking: UIViewController {
             }
             
             do {
-                try addOrEditBookingInteractor.editBooking(updatedBooking)
+                try dashboardInteractor.editBooking(updatedBooking)
                 self.navigationController?.popViewController(animated: true)
             } catch {
                 Logger.log(message: "\(error.localizedDescription)")
@@ -187,7 +185,7 @@ class AddOrEditBooking: UIViewController {
                 Logger.log(message: "Invalid state - parsing to income or expense category failed")
             }
             do {
-                try addOrEditBookingInteractor.addBooking(newBooking)
+                try dashboardInteractor.addBooking(newBooking)
                 self.navigationController?.popViewController(animated: true)
             }  catch {
                 Logger.log(message: "\(error.localizedDescription)")

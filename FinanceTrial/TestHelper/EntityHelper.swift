@@ -68,10 +68,20 @@ class EntityHelper {
     }
     
     
-    static func createDefaultDummyData() -> User {
+    static func createDefaultDummyData() {
         let accountTypes = [AccountType.bankAccount: 8, AccountType.cash: 12, AccountType.creditCard: 20]
         let bookings = createBookings(accountTypes: accountTypes)
-        let user = createUser(bookings: bookings)
-        return user
+        let user = createUser(bookings: [])
+        
+        let bookingPersistence = BookingPersistence()
+        try? bookingPersistence.saveUser(user)
+        
+        let bookingRepository = BookingRepository(persistenceDelegate: BookingPersistence())
+        let dashboardInteractor = BookingInteractor(bookingRepository: bookingRepository)
+        
+        for booking in bookings {
+            try? dashboardInteractor.addBooking(booking)
+        }
     }
+
 }
