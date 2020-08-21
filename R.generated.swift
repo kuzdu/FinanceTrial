@@ -107,7 +107,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 19 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 20 localization keys.
     struct localizable {
       /// en translation: Bank Account
       ///
@@ -149,6 +149,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en
       static let add_or_edit_segment_income_title = Rswift.StringResource(key: "add_or_edit_segment_income_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Ok
+      ///
+      /// Locales: en
+      static let general_ok = Rswift.StringResource(key: "general_ok", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: Select Account
       ///
       /// Locales: en
@@ -334,6 +338,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("add_or_edit_segment_income_title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Ok
+      ///
+      /// Locales: en
+      static func general_ok(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("general_ok", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "general_ok"
+        }
+
+        return NSLocalizedString("general_ok", bundle: bundle, comment: "")
       }
 
       /// en translation: Select Account

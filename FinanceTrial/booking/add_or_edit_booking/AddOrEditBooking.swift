@@ -13,7 +13,8 @@ import SnapKit
 class AddOrEditBooking: BookingBaseViewController {
     public var booking: Booking?
     private var selectedAccount: AccountType = .bankAccount
-    private var selectedCategory: Categories = .dividends
+    private var selectedIncomeCategory: IncomeCategory?
+    private var selectedExpenseCategory: ExpenseCategory?
     
     // MARK: - UI
     private var incomeOrExpenseSegmentControl: UISegmentedControl!
@@ -27,13 +28,12 @@ class AddOrEditBooking: BookingBaseViewController {
     private var categoryTextField: UITextField!
     private var amountTextField: UITextField!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         initUI()
     }
     
-    fileprivate func addConstraints() {
+    private func addConstraints() {
         incomeOrExpenseSegmentControl.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(8)
             make.left.equalToSuperview().offset(16)
@@ -62,47 +62,52 @@ class AddOrEditBooking: BookingBaseViewController {
         }
     }
     
-    fileprivate func addViews() {
-        self.view.addSubview(incomeOrExpenseSegmentControl)
-        self.view.addSubview(accountTextField)
-        self.view.addSubview(categoryTextField)
-        self.view.addSubview(amountTextField)
+    private func addViews() {
+        view.addSubview(incomeOrExpenseSegmentControl)
+        view.addSubview(accountTextField)
+        view.addSubview(categoryTextField)
+        view.addSubview(amountTextField)
     }
     
-    fileprivate func initCategoryPickerView() {
+    private func initCategoryPickerView() {
         categoryPickerView = UIPickerView()
         categoryPickerView.tag = 2
         categoryPickerView.delegate = self
     }
     
-    fileprivate func initAccountTextField() {
+    private func initAccountTextField() {
         accountTextField = BaseTextField()
         accountTextField.inputView = accountPickerView
         accountTextField.placeholder = R.string.localizable.add_or_edit_account_placeholder()
     }
     
-    fileprivate func initAccountPickerView() {
+    private func initAccountPickerView() {
         accountPickerView = UIPickerView()
         accountPickerView.tag = 1
         accountPickerView.delegate = self
     }
     
-    fileprivate func initCategoryTextField() {
+    private func initCategoryTextField() {
         categoryTextField = BaseTextField()
         categoryTextField.inputView = categoryPickerView
         categoryTextField.placeholder = R.string.localizable.add_or_edit_category_placeholder()
     }
     
-    fileprivate func initAmountTextField() {
+    private func initAmountTextField() {
         amountTextField = BaseTextField()
         amountTextField.keyboardType = .decimalPad
         amountTextField.placeholder = R.string.localizable.add_or_edit_amount_placeholder()
     }
     
-    fileprivate func initIncomeOrExpenseSegmentControl() {
+    private func initIncomeOrExpenseSegmentControl() {
         incomeOrExpenseSegmentControl = UISegmentedControl(items: [R.string.localizable.add_or_edit_segment_income_title(),
                                                                    R.string.localizable.add_or_edit_segment_expence_title()])
         incomeOrExpenseSegmentControl.selectedSegmentIndex = 0
+        incomeOrExpenseSegmentControl.addTarget(self, action: #selector(segmentedControlValueChanged), for:.valueChanged)
+    }
+    
+    private func isExpenseSegmentControl() -> Bool {
+        return incomeOrExpenseSegmentControl.selectedSegmentIndex == 1
     }
     
     private func initUI() {
@@ -131,22 +136,46 @@ class AddOrEditBooking: BookingBaseViewController {
                 return
             }
             
-            amountTextField.text =  "x"
+            amountTextField.text = "\(booking.amount)"
             accountTextField.text = booking.account.rawValue
             
             if let expenseCategory = booking.expenseCategory {
-                categoryTextField.text = expenseCategory.rawValue
+                incomeOrExpenseSegmentControl.selectedSegmentIndex = 1
+                let index = ExpenseCategory.allCases.firstIndex(of: expenseCategory) ?? 0
+                updateSelectedCategory(index: index)
             } else if let incomeCategory = booking.incomeCategory {
-                categoryTextField.text = incomeCategory.rawValue
+                incomeOrExpenseSegmentControl.selectedSegmentIndex = 0
+                let index = IncomeCategory.allCases.firstIndex(of: incomeCategory) ?? 0
+                updateSelectedCategory(index: index)
             }
-            
-            let index = AccountType.allCases.firstIndex(of: booking.account) ?? 0
-            incomeOrExpenseSegmentControl.selectedSegmentIndex = index
         }
     }
     
     private func isEditingBooking() -> Bool {
         return booking != nil
+    }
+    
+    private func isCategoryPickerView(_ pickerView: UIPickerView) -> Bool {
+        return pickerView.tag == 2
+    }
+    
+    private func updateSelectedCategory(index: Int) {
+        if isExpenseSegmentControl() {
+            selectedIncomeCategory = nil
+            selectedExpenseCategory = ExpenseCategory.allCases[index]
+            categoryTextField.text = ExpenseCategory.allCases[index].rawValue
+            amountTextField.textColor = UIColor.red
+        } else {
+            selectedExpenseCategory = nil
+            selectedIncomeCategory = IncomeCategory.allCases[index]
+            categoryTextField.text = IncomeCategory.allCases[index].rawValue
+            amountTextField.textColor = UIColor.green
+        }
+    }
+    
+    @objc func segmentedControlValueChanged(segment: UISegmentedControl) {
+        categoryPickerView.reloadAllComponents()
+        updateSelectedCategory(index: 0)
     }
     
     @objc func addOrEditBooking() {
@@ -157,9 +186,9 @@ class AddOrEditBooking: BookingBaseViewController {
             booking?.amount = amount
             booking?.date = Date()
             
-            if let incomeCategory = selectedCategory.toIncomeCategory() {
+            if let incomeCategory = selectedIncomeCategory {
                 booking?.incomeCategory = incomeCategory
-            } else if let expenseCategory = selectedCategory.toExpenseCategory() {
+            } else if let expenseCategory = selectedExpenseCategory {
                 booking?.expenseCategory = expenseCategory
             }
             
@@ -177,13 +206,14 @@ class AddOrEditBooking: BookingBaseViewController {
         } else {
             var newBooking = Booking(id: UUID(), account: selectedAccount, amount: amount, date: Date())
             
-            if let expenseCategory = selectedCategory.toExpenseCategory() {
+            if let expenseCategory = selectedExpenseCategory {
                 newBooking.expenseCategory = expenseCategory
-            } else if let incomeCategory = selectedCategory.toIncomeCategory() {
+            } else if let incomeCategory = selectedIncomeCategory {
                 newBooking.incomeCategory = incomeCategory
             } else {
                 Logger.log(message: "Invalid state - parsing to income or expense category failed")
             }
+            
             do {
                 try dashboardInteractor.addBooking(newBooking)
                 self.navigationController?.popViewController(animated: true)
@@ -193,9 +223,6 @@ class AddOrEditBooking: BookingBaseViewController {
         }
     }
     
-    private func isCategoryPickerView(_ pickerView: UIPickerView) -> Bool {
-        return pickerView.tag == 2
-    }
 }
 
 extension AddOrEditBooking: UIPickerViewDelegate, UIPickerViewDataSource {
@@ -205,7 +232,11 @@ extension AddOrEditBooking: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if isCategoryPickerView(pickerView) {
-            return Categories.allCases[row].rawValue
+            if isExpenseSegmentControl() {
+                return ExpenseCategory.allCases[row].rawValue
+            } else {
+                return IncomeCategory.allCases[row].rawValue
+            }
         } else {
             return AccountType.allCases[row].rawValue
         }
@@ -213,26 +244,21 @@ extension AddOrEditBooking: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if isCategoryPickerView(pickerView) {
-            return Categories.allCases.count
+            if isExpenseSegmentControl() {
+                return ExpenseCategory.allCases.count
+            } else {
+                return IncomeCategory.allCases.count
+            }
         }
         return AccountType.allCases.count
     }
+    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if isCategoryPickerView(pickerView) {
-            selectedCategory = Categories.allCases[row]
-            categoryTextField.text = Categories.allCases[row].rawValue
+            updateSelectedCategory(index: row)
         } else {
             selectedAccount = AccountType.allCases[row]
             accountTextField.text = AccountType.allCases[row].rawValue
         }
     }
 }
-
-/*let categoryItems = [R.string.localizable.expense_category_tax(),
- R.string.localizable.expense_category_grocery(),
- R.string.localizable.expense_category_entertainment(),
- R.string.localizable.expense_category_gym(),
- R.string.localizable.expense_category_health(),
- R.string.localizable.income_category_salary(),
- R.string.localizable.income_category_dividends()]*/
-// R.string.localizable.add_or_edit_segment_cash(), R.string.localizable.add_or_edit_segment_credit_card(), R.string.localizable.add_or_edit_segment_bank_account()

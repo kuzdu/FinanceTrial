@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
       
         UserDefaults.standard.removeObject(forKey: "userKey")
-        EntityHelper.createDefaultDummyData()
+        //EntityHelper.createDefaultDummyData()
         
         let navigationViewController = UINavigationController()
         let homeViewController = DashboardViewController()

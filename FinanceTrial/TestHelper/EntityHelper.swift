@@ -83,5 +83,4 @@ class EntityHelper {
             try? dashboardInteractor.addBooking(booking)
         }
     }
-
 }
