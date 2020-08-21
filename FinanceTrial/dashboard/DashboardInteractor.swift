@@ -19,4 +19,12 @@ class DashboardInteractor {
             return []
         }
     }
+    
+    func deleteBooking(booking: Booking) {
+        do {
+            try bookingRepository.delete(booking: booking)
+        } catch {
+            print("Log - Cannot delete booking : \(booking.id)")
+        }
+    }
 }

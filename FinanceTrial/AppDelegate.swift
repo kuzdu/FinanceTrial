@@ -16,12 +16,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         
-        
         let bookingPersistence = BookingPersistence()
         try? bookingPersistence.saveUser(EntityHelper.createDefaultDummyData())
         
+     //  UserDefaults.standard.removeObject(forKey: "userKey")
+        
+        
+        let navigationViewController = UINavigationController()
         let homeViewController = DashboardViewController()
-        window?.rootViewController = homeViewController
+        navigationViewController.viewControllers = [homeViewController]
+        
+        window?.rootViewController = navigationViewController
         window?.makeKeyAndVisible()
         return true
     }

@@ -16,6 +16,13 @@ struct Booking: Codable {
     var date: Date
     var amount: Double
     
+    init(id: UUID, account: AccountType, amount: Double, date: Date) {
+        self.id = id
+        self.account = account
+        self.amount = amount
+        self.date = date
+    }
+    
     init(id: UUID, account: AccountType, expenseCategory: ExpenseCategory, amount: Double, date: Date) {
         self.id = id
         self.account = account

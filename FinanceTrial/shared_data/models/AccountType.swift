@@ -8,9 +8,9 @@
 
 import Foundation
 
-enum AccountType: String, Codable {
-    case cash
-    case creditCard
-    case bankAccount
+enum AccountType: String, Codable, CaseIterable {
+    case cash = "Cash"
+    case creditCard = "Credit Card"
+    case bankAccount = "Bank Account"
 }
 

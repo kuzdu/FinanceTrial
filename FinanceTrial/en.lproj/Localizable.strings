@@ -12,3 +12,24 @@
 "dashboard_section_title_credit_card" = "Credit Card";
 "dashboard_section_title_bank_account" = "Bank Account";
 
+"dashboard_title" = "Dashboard";
+
+"add_or_edit_segment_cash" = "Cash";
+"add_or_edit_segment_credit_card" = "Credit Card";
+"add_or_edit_segment_bank_account" = "Bank Account";
+
+"expense_category_tax" = "tax";
+"expense_category_grocery" = "grocery";
+"expense_category_entertainment" = "entertainment";
+"expense_category_gym" = "gym";
+"expense_category_health" = "health";
+
+"income_category_salary" = "salary";
+"income_category_dividends" = "dividends";
+
+"add_or_edit_segment_income_title" = "Income";
+"add_or_edit_segment_expence_title" = "Expence";
+
+"add_or_edit_amount_placeholder" = "Enter Amount";
+"add_or_edit_category_placeholder" = "Select Category";
+"add_or_edit_account_placeholder" = "Select Account";

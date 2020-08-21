@@ -110,9 +110,8 @@ class BookingPersistence: PersistenceDelegate {
     
     func deleteBooking(_ booking: Booking) throws {
         do {
-            let user = try loadUser()
-            var bookings = user.bookings
-            bookings.removeAll { $0.id == booking.id }
+            var user = try loadUser()
+            user.bookings.removeAll { $0.id == booking.id }
             try saveUser(user)
         } catch {
             throw error

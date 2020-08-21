@@ -9,6 +9,6 @@
 import Foundation
 
 enum IncomeCategory: String, Codable, CaseIterable {
-    case salary
-    case dividends
+    case salary = "Salary"
+    case dividends = "Dividends"
 }

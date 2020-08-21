@@ -16,7 +16,7 @@ extension Date {
         return dateformat.string(from: self)
     }
     
-    // the only thing I copied. SOURCE: https://stackoverflow.com/a/52023150/4420355
+    // ATTENTION: the only thing I copied. SOURCE: https://stackoverflow.com/a/52023150/4420355
     // it is used to create random date dummy data
     static func randomDate(range: Int) -> Date {
         // Get the interval for the current date
@@ -28,11 +28,10 @@ extension Date {
         let random = Double(arc4random_uniform(UInt32(intervalRange)) + 1)
         // Since this can either be in the past or future, we shift the range
         // so that the halfway point is the present
-        let newInterval = interval + (random - (intervalRange / 2.0))
+        let newInterval = interval + (random - (intervalRange / 0.5))
         // Initialize a date value with our newly created interval
         return Date(timeIntervalSince1970: newInterval)
     }
-    
 }
 
 

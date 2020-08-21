@@ -8,10 +8,11 @@
 
 import Foundation
 
+
 enum ExpenseCategory: String, Codable, CaseIterable {
-    case tax
-    case grocery
-    case entertainment
-    case gym
-    case health
+    case tax = "Tax"
+    case grocery = "Grocery"
+    case entertainment = "Entertainment"
+    case gym = "Gym"
+    case health = "Health"
 }

@@ -20,6 +20,12 @@ class DashboardViewController: UIViewController {
     private let dashboardInteractor = DashboardInteractor()
     private let dashboardCellId = "DashboardCellIdent"
     
+    private var cashBookings: [Booking] = []
+    private var creditCardBookings: [Booking] = []
+    private var bankAccountBookings: [Booking] = []
+    
+    private var dashboardTableView: UITableView!
+    
     init() {
         super.init(nibName: nil, bundle: nil)
     }
@@ -30,9 +36,21 @@ class DashboardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .blue
-        
-        let dashboardTableView = UITableView()
+        initUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fillTableView()
+    }
+    
+    private func addAddButtonToNavigationBar() {
+        let addBarButtonItem = UIBarButtonItem(title: "Add", style: .done, target: self, action: #selector(addOrEditBooking))
+        self.navigationItem.rightBarButtonItem  = addBarButtonItem
+    }
+    
+    private func initTableView() {
+        dashboardTableView = UITableView()
         view.addSubview(dashboardTableView)
         
         dashboardTableView.snp.makeConstraints { (make) in
@@ -45,13 +63,40 @@ class DashboardViewController: UIViewController {
         dashboardTableView.estimatedRowHeight = 40
         dashboardTableView.tableFooterView = UIView()
         dashboardTableView.reloadData()
-        
+    }
+    
+    private func setNavigationTitle() {
+        self.title = R.string.localizable.dashboard_title()
+    }
+    
+    private func initUI() {
+        setNavigationTitle()
+        initTableView()
+        addAddButtonToNavigationBar()
+        fillTableView()
+    }
+    
+    private func fillTableView() {
+        cashBookings = dashboardInteractor.getBookings(accountType: .cash)
+        creditCardBookings = dashboardInteractor.getBookings(accountType: .creditCard)
+        bankAccountBookings = dashboardInteractor.getBookings(accountType: .bankAccount)
+        dashboardTableView?.reloadData()
     }
     
     private func setBooking(_ booking: Booking, for dashboardCell: DashboardCell) {
         dashboardCell.amount = booking.amount
         dashboardCell.bookingTitleLabel.text = booking.incomeCategory?.rawValue ?? booking.expenseCategory?.rawValue
         dashboardCell.bookingSubtitleLabel.text = booking.date.toString()
+    }
+    
+    @objc func addOrEditBooking() {
+        goToAddOrEditBooking(with: nil)
+    }
+    
+    func goToAddOrEditBooking(with booking: Booking?) {
+        let addOrEditBooking = AddOrEditBooking()
+        addOrEditBooking.booking = booking
+        self.navigationController?.pushViewController(addOrEditBooking, animated: true)
     }
 }
 
@@ -65,15 +110,12 @@ extension DashboardViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch dashboardSectionType {
         case .cash:
-            let cashBookings = dashboardInteractor.getBookings(accountType: .cash)
             let cashBooking = cashBookings[indexPath.row]
             setBooking(cashBooking, for: dashboardCell)
         case .creditCard:
-            let creditCardBookings = dashboardInteractor.getBookings(accountType: .creditCard)
             let creditCardBooking = creditCardBookings[indexPath.row]
             setBooking(creditCardBooking, for: dashboardCell)
         case .bankAccount:
-            let bankAccountBookings = dashboardInteractor.getBookings(accountType: .bankAccount)
             let bankAccountBooking = bankAccountBookings[indexPath.row]
             setBooking(bankAccountBooking, for: dashboardCell)
         }
@@ -89,11 +131,11 @@ extension DashboardViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch dashboardSectionType {
         case .cash:
-            return dashboardInteractor.getBookings(accountType: .cash).count
+            return cashBookings.count
         case .creditCard:
-            return dashboardInteractor.getBookings(accountType: .creditCard).count
+            return creditCardBookings.count
         case .bankAccount:
-            return dashboardInteractor.getBookings(accountType: .bankAccount).count
+            return bankAccountBookings.count
         }
     }
     
@@ -109,10 +151,41 @@ extension DashboardViewController: UITableViewDelegate, UITableViewDataSource {
             return R.string.localizable.dashboard_section_title_bank_account()
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let dashboardSectionType = dashboardSectionTypes[indexPath.section]
+        
+        switch dashboardSectionType {
+        case .cash:
+            let booking = cashBookings[indexPath.row]
+            goToAddOrEditBooking(with: booking)
+        case .creditCard:
+            let booking = creditCardBookings[indexPath.row]
+            goToAddOrEditBooking(with: booking)
+        case .bankAccount:
+            let booking = bankAccountBookings[indexPath.row]
+            goToAddOrEditBooking(with: booking)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            var booking: Booking!
+            
+            let dashboardSectionType = dashboardSectionTypes[indexPath.section]
+            switch dashboardSectionType {
+            case .cash:
+                booking = cashBookings[indexPath.row]
+                cashBookings.remove(at: indexPath.row)
+            case .creditCard:
+                booking = creditCardBookings[indexPath.row]
+                creditCardBookings.remove(at: indexPath.row)
+            case .bankAccount:
+                booking = bankAccountBookings[indexPath.row]
+                bankAccountBookings.remove(at: indexPath.row)
+            }
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            dashboardInteractor.deleteBooking(booking: booking)
+        }
+    }
 }
-
-
-/*
- - swipe to delete bauen
- - navigation viewcontroller plus item bauen
- */

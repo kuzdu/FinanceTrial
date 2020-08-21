@@ -107,8 +107,12 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 3 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 19 localization keys.
     struct localizable {
+      /// en translation: Bank Account
+      ///
+      /// Locales: en
+      static let add_or_edit_segment_bank_account = Rswift.StringResource(key: "add_or_edit_segment_bank_account", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: Bank Account
       ///
       /// Locales: en
@@ -116,11 +120,86 @@ struct R: Rswift.Validatable {
       /// en translation: Cash
       ///
       /// Locales: en
+      static let add_or_edit_segment_cash = Rswift.StringResource(key: "add_or_edit_segment_cash", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Cash
+      ///
+      /// Locales: en
       static let dashboard_section_title_cash = Rswift.StringResource(key: "dashboard_section_title_cash", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: Credit Card
       ///
       /// Locales: en
+      static let add_or_edit_segment_credit_card = Rswift.StringResource(key: "add_or_edit_segment_credit_card", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Credit Card
+      ///
+      /// Locales: en
       static let dashboard_section_title_credit_card = Rswift.StringResource(key: "dashboard_section_title_credit_card", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Dashboard
+      ///
+      /// Locales: en
+      static let dashboard_title = Rswift.StringResource(key: "dashboard_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Enter Amount
+      ///
+      /// Locales: en
+      static let add_or_edit_amount_placeholder = Rswift.StringResource(key: "add_or_edit_amount_placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Expence
+      ///
+      /// Locales: en
+      static let add_or_edit_segment_expence_title = Rswift.StringResource(key: "add_or_edit_segment_expence_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Income
+      ///
+      /// Locales: en
+      static let add_or_edit_segment_income_title = Rswift.StringResource(key: "add_or_edit_segment_income_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Select Account
+      ///
+      /// Locales: en
+      static let add_or_edit_account_placeholder = Rswift.StringResource(key: "add_or_edit_account_placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Select Category
+      ///
+      /// Locales: en
+      static let add_or_edit_category_placeholder = Rswift.StringResource(key: "add_or_edit_category_placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: dividends
+      ///
+      /// Locales: en
+      static let income_category_dividends = Rswift.StringResource(key: "income_category_dividends", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: entertainment
+      ///
+      /// Locales: en
+      static let expense_category_entertainment = Rswift.StringResource(key: "expense_category_entertainment", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: grocery
+      ///
+      /// Locales: en
+      static let expense_category_grocery = Rswift.StringResource(key: "expense_category_grocery", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: gym
+      ///
+      /// Locales: en
+      static let expense_category_gym = Rswift.StringResource(key: "expense_category_gym", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: health
+      ///
+      /// Locales: en
+      static let expense_category_health = Rswift.StringResource(key: "expense_category_health", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: salary
+      ///
+      /// Locales: en
+      static let income_category_salary = Rswift.StringResource(key: "income_category_salary", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: tax
+      ///
+      /// Locales: en
+      static let expense_category_tax = Rswift.StringResource(key: "expense_category_tax", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+
+      /// en translation: Bank Account
+      ///
+      /// Locales: en
+      static func add_or_edit_segment_bank_account(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("add_or_edit_segment_bank_account", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "add_or_edit_segment_bank_account"
+        }
+
+        return NSLocalizedString("add_or_edit_segment_bank_account", bundle: bundle, comment: "")
+      }
 
       /// en translation: Bank Account
       ///
@@ -135,6 +214,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("dashboard_section_title_bank_account", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Cash
+      ///
+      /// Locales: en
+      static func add_or_edit_segment_cash(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("add_or_edit_segment_cash", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "add_or_edit_segment_cash"
+        }
+
+        return NSLocalizedString("add_or_edit_segment_cash", bundle: bundle, comment: "")
       }
 
       /// en translation: Cash
@@ -155,6 +249,21 @@ struct R: Rswift.Validatable {
       /// en translation: Credit Card
       ///
       /// Locales: en
+      static func add_or_edit_segment_credit_card(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("add_or_edit_segment_credit_card", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "add_or_edit_segment_credit_card"
+        }
+
+        return NSLocalizedString("add_or_edit_segment_credit_card", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Credit Card
+      ///
+      /// Locales: en
       static func dashboard_section_title_credit_card(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("dashboard_section_title_credit_card", bundle: hostingBundle, comment: "")
@@ -165,6 +274,201 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("dashboard_section_title_credit_card", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Dashboard
+      ///
+      /// Locales: en
+      static func dashboard_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("dashboard_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "dashboard_title"
+        }
+
+        return NSLocalizedString("dashboard_title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Enter Amount
+      ///
+      /// Locales: en
+      static func add_or_edit_amount_placeholder(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("add_or_edit_amount_placeholder", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "add_or_edit_amount_placeholder"
+        }
+
+        return NSLocalizedString("add_or_edit_amount_placeholder", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Expence
+      ///
+      /// Locales: en
+      static func add_or_edit_segment_expence_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("add_or_edit_segment_expence_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "add_or_edit_segment_expence_title"
+        }
+
+        return NSLocalizedString("add_or_edit_segment_expence_title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Income
+      ///
+      /// Locales: en
+      static func add_or_edit_segment_income_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("add_or_edit_segment_income_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "add_or_edit_segment_income_title"
+        }
+
+        return NSLocalizedString("add_or_edit_segment_income_title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Select Account
+      ///
+      /// Locales: en
+      static func add_or_edit_account_placeholder(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("add_or_edit_account_placeholder", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "add_or_edit_account_placeholder"
+        }
+
+        return NSLocalizedString("add_or_edit_account_placeholder", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Select Category
+      ///
+      /// Locales: en
+      static func add_or_edit_category_placeholder(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("add_or_edit_category_placeholder", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "add_or_edit_category_placeholder"
+        }
+
+        return NSLocalizedString("add_or_edit_category_placeholder", bundle: bundle, comment: "")
+      }
+
+      /// en translation: dividends
+      ///
+      /// Locales: en
+      static func income_category_dividends(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("income_category_dividends", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "income_category_dividends"
+        }
+
+        return NSLocalizedString("income_category_dividends", bundle: bundle, comment: "")
+      }
+
+      /// en translation: entertainment
+      ///
+      /// Locales: en
+      static func expense_category_entertainment(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("expense_category_entertainment", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "expense_category_entertainment"
+        }
+
+        return NSLocalizedString("expense_category_entertainment", bundle: bundle, comment: "")
+      }
+
+      /// en translation: grocery
+      ///
+      /// Locales: en
+      static func expense_category_grocery(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("expense_category_grocery", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "expense_category_grocery"
+        }
+
+        return NSLocalizedString("expense_category_grocery", bundle: bundle, comment: "")
+      }
+
+      /// en translation: gym
+      ///
+      /// Locales: en
+      static func expense_category_gym(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("expense_category_gym", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "expense_category_gym"
+        }
+
+        return NSLocalizedString("expense_category_gym", bundle: bundle, comment: "")
+      }
+
+      /// en translation: health
+      ///
+      /// Locales: en
+      static func expense_category_health(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("expense_category_health", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "expense_category_health"
+        }
+
+        return NSLocalizedString("expense_category_health", bundle: bundle, comment: "")
+      }
+
+      /// en translation: salary
+      ///
+      /// Locales: en
+      static func income_category_salary(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("income_category_salary", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "income_category_salary"
+        }
+
+        return NSLocalizedString("income_category_salary", bundle: bundle, comment: "")
+      }
+
+      /// en translation: tax
+      ///
+      /// Locales: en
+      static func expense_category_tax(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("expense_category_tax", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "expense_category_tax"
+        }
+
+        return NSLocalizedString("expense_category_tax", bundle: bundle, comment: "")
       }
 
       fileprivate init() {}
