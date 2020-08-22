@@ -53,7 +53,7 @@ class BookingPersistence: PersistenceDelegate {
     func loadUser() throws -> User  {
         guard let userString = UserDefaults.standard.string(forKey: PersistenceKeys.user.rawValue) else {
             // fallback for first init
-            return User(name: "Michael", bookings: [])
+            return User(bookings: [])
         }
         
         do {

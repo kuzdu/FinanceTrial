@@ -31,7 +31,7 @@ class EntityHelper {
     }
     
     static func createUser(bookings: [Booking]) -> User {
-        return User(name: "Michael", bookings: bookings)
+        return User(bookings: bookings)
     }
     
     static func createBookings(accountTypes: [AccountType:Int]) -> [Booking] {

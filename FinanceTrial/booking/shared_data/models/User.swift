@@ -9,16 +9,13 @@
 import Foundation
 
 struct User: Codable {
-    let name: String
     var bookings: [Booking]
     
     init() {
-        self.name = ""
         bookings = []
     }
     
-    init(name: String, bookings: [Booking]) {
-        self.name = name
+    init(bookings: [Booking]) {
         self.bookings = bookings
     }
     
