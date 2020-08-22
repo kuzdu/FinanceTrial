@@ -21,7 +21,7 @@ class BookingInteractorTests: XCTestCase {
     }
     
     func testAddBookingWithWrongsSigns() {
-        // GIVEN is a dummy repostiry which hold the current booking in a variable
+        // GIVEN is a dummy repository which hold the current booking in a variable
         let testBookingRepository = TestBookingRepository()
         let bookingInteractor = BookingInteractor(bookingRepository: testBookingRepository)
         
@@ -73,7 +73,7 @@ class BookingInteractorTests: XCTestCase {
         }
         
         func delete(booking: Booking) throws {
-            // not needed
+            // not needed yet
         }
         
         func getBookings(for accountType: AccountType) throws -> [Booking] {

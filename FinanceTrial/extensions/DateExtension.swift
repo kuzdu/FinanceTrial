@@ -16,7 +16,7 @@ extension Date {
         return dateformat.string(from: self)
     }
     
-    // ATTENTION: the only thing I copied. SOURCE: https://stackoverflow.com/a/52023150/4420355
+    // Coppied from here: https://stackoverflow.com/a/52023150/4420355
     // it is used to create random date dummy data
     static func randomDate(range: Int) -> Date {
         // Get the interval for the current date

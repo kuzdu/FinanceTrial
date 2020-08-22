@@ -17,7 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         
       
-//        UserDefaults.standard.removeObject(forKey: "userKey")
+        // removes all data
+        //UserDefaults.standard.removeObject(forKey: "userKey")
+        
+        // create a dump of dummy data
         //EntityHelper.createDefaultDummyData()
         
         let navigationViewController = UINavigationController()

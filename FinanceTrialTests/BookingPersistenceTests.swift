@@ -43,7 +43,6 @@ class BookingPersistenceTests: XCTestCase {
             XCTAssertEqual(4, loadedUser.filterBooking(for: .bankAccount).count)
             XCTAssertEqual(6, loadedUser.filterBooking(for: .cash).count)
             XCTAssertEqual(8, loadedUser.filterBooking(for: .creditCard).count)
-            XCTAssertEqual("Michael", loadedUser.name)
         } catch {
             XCTFail(error.localizedDescription)
         }
@@ -73,7 +72,6 @@ class BookingPersistenceTests: XCTestCase {
             XCTAssertEqual(1, loadedUser.filterBooking(for: .bankAccount).count)
             XCTAssertEqual(3, loadedUser.filterBooking(for: .cash).count)
             XCTAssertEqual(0, loadedUser.filterBooking(for: .creditCard).count)
-            XCTAssertEqual("Michael", loadedUser.name)
         } catch {
             XCTFail(error.localizedDescription)
         }
@@ -105,7 +103,6 @@ class BookingPersistenceTests: XCTestCase {
             XCTAssertEqual(0, loadedUser.filterBooking(for: .bankAccount).count)
             XCTAssertEqual(2, loadedUser.filterBooking(for: .cash).count)
             XCTAssertEqual(1, loadedUser.filterBooking(for: .creditCard).count)
-            XCTAssertEqual("Michael", loadedUser.name)
         } catch {
             XCTFail(error.localizedDescription)
         }
@@ -137,7 +134,6 @@ class BookingPersistenceTests: XCTestCase {
             XCTAssertEqual(4, loadedUser.filterBooking(for: .bankAccount).count)
             XCTAssertEqual(3, loadedUser.filterBooking(for: .cash).count)
             XCTAssertEqual(2, loadedUser.filterBooking(for: .creditCard).count)
-            XCTAssertEqual("Michael", loadedUser.name)
             
             guard let foundUpdateBooking = loadedUser.bookings.first(where: { $0.id == bookingToUpdateUUID }) else {
                 XCTFail("Not found \(bookingToUpdateUUID)")

@@ -89,7 +89,7 @@ class DashboardViewController: BookingBaseViewController {
     }
     
     private func goToAddOrEditBooking(with booking: Booking?) {
-        let addOrEditBooking = AddOrEditBooking()
+        let addOrEditBooking = AddOrEditBookingViewController()
         addOrEditBooking.booking = booking
         self.navigationController?.pushViewController(addOrEditBooking, animated: true)
     }

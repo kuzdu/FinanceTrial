@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-class AddOrEditBooking: BookingBaseViewController {
+class AddOrEditBookingViewController: BookingBaseViewController {
     public var booking: Booking?
     private var selectedAccount: AccountType?
     private var selectedIncomeCategory: IncomeCategory?
@@ -95,6 +95,7 @@ class AddOrEditBooking: BookingBaseViewController {
     
     private func initAmountTextField() {
         amountTextField = BaseTextField()
+        amountTextField.textColor = UIColor.green
         amountTextField.keyboardType = .decimalPad
         amountTextField.placeholder = R.string.localizable.add_or_edit_amount_placeholder()
     }
@@ -249,7 +250,7 @@ class AddOrEditBooking: BookingBaseViewController {
     }
 }
 
-extension AddOrEditBooking: UIPickerViewDelegate, UIPickerViewDataSource {
+extension AddOrEditBookingViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
