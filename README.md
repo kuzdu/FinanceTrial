@@ -40,6 +40,6 @@ The UI offers much potential for improvement:
 - R.swift: Resources are made available programmatically. This means that the paths to images and texts are always available.
 
 ## Open questions/points that have arisen during the processing
-`SwiftUI` vs programmatic solution - advantages and disadvantages? 
-`Combine` vs `SwiftRx`? 
-`CoreData` vs. `JSON` persistence - When is what more useful?  
+- `SwiftUI` vs programmatic solution - advantages and disadvantages? 
+- `Combine` vs `SwiftRx`? 
+- `CoreData` vs. `JSON` persistence - When is what more useful?  
