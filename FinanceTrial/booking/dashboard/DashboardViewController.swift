@@ -214,8 +214,7 @@ extension DashboardViewController: UITableViewDelegate, UITableViewDataSource {
             tableView.beginUpdates()
             tableView.deleteRows(at: [indexPath], with: .fade)
             tableView.endUpdates()
-            
-            //TODO: not that smooth animation
+        
             tableView.reloadData()
         }
     }

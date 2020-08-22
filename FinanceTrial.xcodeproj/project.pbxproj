@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1AA5A402540C8008F26A8822 /* Pods_FinanceTrialTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 282FA64A61C1198C4066B6A0 /* Pods_FinanceTrialTests.framework */; };
 		1F65324159BFB7237D6537BF /* Pods_FinanceTrial.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB7809D9B5EBD424BCD28FFA /* Pods_FinanceTrial.framework */; };
+		A42421E124F1270D00AC1267 /* BookingInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42421E024F1270D00AC1267 /* BookingInteractorTests.swift */; };
 		A44C3EE224EAE077008042AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44C3EE124EAE077008042AB /* AppDelegate.swift */; };
 		A44C3EEB24EAE078008042AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A44C3EEA24EAE078008042AB /* Assets.xcassets */; };
 		A44C3EEE24EAE078008042AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A44C3EEC24EAE078008042AB /* LaunchScreen.storyboard */; };
@@ -59,6 +60,7 @@
 		382BD49247C83C2C7937B8F5 /* Pods-FinanceTrial.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinanceTrial.debug.xcconfig"; path = "Target Support Files/Pods-FinanceTrial/Pods-FinanceTrial.debug.xcconfig"; sourceTree = "<group>"; };
 		725B14F695C8A65971D36542 /* Pods-FinanceTrialTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinanceTrialTests.debug.xcconfig"; path = "Target Support Files/Pods-FinanceTrialTests/Pods-FinanceTrialTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7C492AC8C758A5427A4C4184 /* Pods-FinanceTrial.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinanceTrial.release.xcconfig"; path = "Target Support Files/Pods-FinanceTrial/Pods-FinanceTrial.release.xcconfig"; sourceTree = "<group>"; };
+		A42421E024F1270D00AC1267 /* BookingInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingInteractorTests.swift; sourceTree = "<group>"; };
 		A44C3EDE24EAE077008042AB /* FinanceTrial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinanceTrial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A44C3EE124EAE077008042AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A44C3EEA24EAE078008042AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 			children = (
 				A44C3EFA24EAE079008042AB /* Info.plist */,
 				A44C3F2F24ED33F9008042AB /* BookingPersistenceTests.swift */,
+				A42421E024F1270D00AC1267 /* BookingInteractorTests.swift */,
 			);
 			path = FinanceTrialTests;
 			sourceTree = "<group>";
@@ -543,6 +546,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A42421E124F1270D00AC1267 /* BookingInteractorTests.swift in Sources */,
 				A44C3F3024ED33F9008042AB /* BookingPersistenceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

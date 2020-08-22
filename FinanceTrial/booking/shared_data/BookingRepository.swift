@@ -38,7 +38,6 @@ class BookingRepository: BookingDelegate {
         }
     }
     
-    //TODO: Test schreiben
     func delete(booking: Booking) throws {
         do {
             try bookingPersistence.deleteBooking(booking)
@@ -47,7 +46,6 @@ class BookingRepository: BookingDelegate {
         }
     }
     
-    //TODO: test schreiben
     func getBookings(for accountType: AccountType) throws -> [Booking] {
         do {
             let user = try bookingPersistence.loadUser()
