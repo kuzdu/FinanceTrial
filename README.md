@@ -23,17 +23,17 @@ The UI is kept very functional. In the 'Outlook' improvements are suggested to c
 ## Hints
 - In the 'AppDelegate' are two commented out methods. One deletes all data. The other creates a lot of dummy data.
 - The deletion of a booking is implemented by *Swipe-To-Delete* 
-- Two functions (to be found in the `DoubleExtension` and `DateExtension` from the code to be found here are copied. The sources are indicated accordingly in the code. 
-- The code was **never gerviewed**: Some parts may still be debatable or can be optimized afterwards. Because of the timebox, there was no optimization towards the end. 
+- Two functions (to be found in the `DoubleExtension` and `DateExtension`) from the code are copied from StackOverflow. The sources are indicated accordingly in the code. 
+- The code was **never reviewed**: Some parts may still be debatable or can be optimized afterwards. Because of the timebox, there was no optimization towards the end. 
 
 ## Outlook
 The UI offers much potential for improvement: 
 - Depositing an App Icon and LaunchScreen Icon
-- Display a picture+label in the dashboard if no 'bookings' have been stored yet 
-- General Add descriptive texts, what to do
-- Grey out the Add/Edit button if the data is not
-- Extend the User object with a name attribute to provide better personalization
-- Since the project is very small, the UI elements were created directly in the VC. In the future, a kind of UI builder should be implemented with which you can easily create corresponding elements. 
+- Display a picture and description label in the dashboard if no bookings have been stored yet 
+- General add descriptive texts, what to do
+- Grey out the Add/Edit button if the input data is not valid
+- Extend the `User` object with a name attribute to provide better personalization
+- Since the project is very small, the UI elements were created directly in the `ViewController`. In the future, a kind of UI builder should be implemented with which you can easily create corresponding elements. 
 
 ## Libraries used    
 - SnapKit:  DSL for setting constraints
