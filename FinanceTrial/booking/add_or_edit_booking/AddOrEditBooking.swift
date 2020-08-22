@@ -12,7 +12,7 @@ import SnapKit
 
 class AddOrEditBooking: BookingBaseViewController {
     public var booking: Booking?
-    private var selectedAccount: AccountType = .bankAccount
+    private var selectedAccount: AccountType?
     private var selectedIncomeCategory: IncomeCategory?
     private var selectedExpenseCategory: ExpenseCategory?
     
@@ -110,6 +110,22 @@ class AddOrEditBooking: BookingBaseViewController {
         return incomeOrExpenseSegmentControl.selectedSegmentIndex == 1
     }
     
+    private func setData(for booking: Booking) {
+        amountTextField.text = "\(booking.amount)"
+        accountTextField.text = booking.account.rawValue
+        selectedAccount = booking.account
+        
+        if let expenseCategory = booking.expenseCategory {
+            incomeOrExpenseSegmentControl.selectedSegmentIndex = 1
+            let index = ExpenseCategory.allCases.firstIndex(of: expenseCategory) ?? 0
+            updateSelectedCategory(index: index)
+        } else if let incomeCategory = booking.incomeCategory {
+            incomeOrExpenseSegmentControl.selectedSegmentIndex = 0
+            let index = IncomeCategory.allCases.firstIndex(of: incomeCategory) ?? 0
+            updateSelectedCategory(index: index)
+        }
+    }
+    
     private func initUI() {
         self.view.backgroundColor = UIColor.white
         self.navigationController?.navigationBar.isTranslucent = false
@@ -127,28 +143,20 @@ class AddOrEditBooking: BookingBaseViewController {
         addViews()
         addConstraints()
         
-        let addOrEditBookingTitle = isEditingBooking() ? "Update Booking" : "Add Booking"
-        let addOrEditBookingBarButtonItem = UIBarButtonItem(title: addOrEditBookingTitle, style: .done, target: self, action: #selector(addOrEditBooking))
-        self.navigationItem.rightBarButtonItem  = addOrEditBookingBarButtonItem
-        
+        addNavigationBarButton()
+
         if isEditingBooking() {
             guard let booking = booking else {
                 return
             }
-            
-            amountTextField.text = "\(booking.amount)"
-            accountTextField.text = booking.account.rawValue
-            
-            if let expenseCategory = booking.expenseCategory {
-                incomeOrExpenseSegmentControl.selectedSegmentIndex = 1
-                let index = ExpenseCategory.allCases.firstIndex(of: expenseCategory) ?? 0
-                updateSelectedCategory(index: index)
-            } else if let incomeCategory = booking.incomeCategory {
-                incomeOrExpenseSegmentControl.selectedSegmentIndex = 0
-                let index = IncomeCategory.allCases.firstIndex(of: incomeCategory) ?? 0
-                updateSelectedCategory(index: index)
-            }
+            setData(for: booking)
         }
+    }
+    
+    private func addNavigationBarButton() {
+        let addOrEditBookingTitle = isEditingBooking() ? R.string.localizable.add_or_edit_account_update_action() : R.string.localizable.add_or_edit_account_add_action()
+        let addOrEditBookingBarButtonItem = UIBarButtonItem(title: addOrEditBookingTitle, style: .done, target: self, action: #selector(addOrEditBooking))
+        self.navigationItem.rightBarButtonItem  = addOrEditBookingBarButtonItem
     }
     
     private func isEditingBooking() -> Bool {
@@ -177,18 +185,33 @@ class AddOrEditBooking: BookingBaseViewController {
         categoryPickerView.reloadAllComponents()
         updateSelectedCategory(index: 0)
     }
-    
+
     @objc func addOrEditBooking() {
-        let amount = Double(amountTextField.text ?? "") ?? 0.0
+        guard let selectedAccount = selectedAccount else {
+            Alerts.showTextAlert(viewController: self, title: R.string.localizable.error_missing_data_title(), message: R.string.localizable.no_account_selected_error())
+            return
+        }
+        
+        if (selectedIncomeCategory == nil && selectedExpenseCategory == nil) {
+            Alerts.showTextAlert(viewController: self, title:  R.string.localizable.error_missing_data_title(), message: R.string.localizable.no_category_selected_error())
+            return
+        }
+        
+        guard let amount = amountTextField.text, !amount.isEmpty, let amountToDouble = Double(amount) else  {
+            Alerts.showTextAlert(viewController: self, title:  R.string.localizable.error_missing_data_title(), message: R.string.localizable.no_amount_selected_error())
+            return
+        }
         
         if isEditingBooking() {
             booking?.account = selectedAccount
-            booking?.amount = amount
+            booking?.amount = amountToDouble
             booking?.date = Date()
             
             if let incomeCategory = selectedIncomeCategory {
+                booking?.expenseCategory = nil
                 booking?.incomeCategory = incomeCategory
             } else if let expenseCategory = selectedExpenseCategory {
+                booking?.incomeCategory = nil
                 booking?.expenseCategory = expenseCategory
             }
             
@@ -204,11 +227,13 @@ class AddOrEditBooking: BookingBaseViewController {
                 Logger.log(message: "\(error.localizedDescription)")
             }
         } else {
-            var newBooking = Booking(id: UUID(), account: selectedAccount, amount: amount, date: Date())
+            var newBooking = Booking(id: UUID(), account: selectedAccount, amount: amountToDouble, date: Date())
             
             if let expenseCategory = selectedExpenseCategory {
+                newBooking.incomeCategory = nil
                 newBooking.expenseCategory = expenseCategory
             } else if let incomeCategory = selectedIncomeCategory {
+                newBooking.expenseCategory = nil
                 newBooking.incomeCategory = incomeCategory
             } else {
                 Logger.log(message: "Invalid state - parsing to income or expense category failed")
@@ -222,7 +247,6 @@ class AddOrEditBooking: BookingBaseViewController {
             }
         }
     }
-    
 }
 
 extension AddOrEditBooking: UIPickerViewDelegate, UIPickerViewDataSource {

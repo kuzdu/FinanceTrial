@@ -11,10 +11,11 @@ import Foundation
 struct Booking: Codable {
     var id: UUID
     var account: AccountType
-    var expenseCategory: ExpenseCategory? = nil
+    var expenseCategory: ExpenseCategory? = nil 
     var incomeCategory: IncomeCategory? = nil
     var date: Date
     var amount: Double
+    
     
     init(id: UUID, account: AccountType, amount: Double, date: Date) {
         self.id = id

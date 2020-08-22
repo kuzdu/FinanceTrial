@@ -16,7 +16,7 @@ enum DashboardSectionType {
 }
 
 class DashboardViewController: BookingBaseViewController {
-    private let dashboardSectionTypes: [DashboardSectionType] = [.cash, .bankAccount, .creditCard]
+    private let dashboardSectionTypes: [DashboardSectionType] = [.cash, .creditCard, .bankAccount]
     private let dashboardCellId = "DashboardCellIdent"
     
     private var cashBookings: [Booking] = []

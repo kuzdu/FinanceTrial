@@ -107,8 +107,12 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 20 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 26 localization keys.
     struct localizable {
+      /// en translation: Add Booking
+      ///
+      /// Locales: en
+      static let add_or_edit_account_add_action = Rswift.StringResource(key: "add_or_edit_account_add_action", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: Bank Account
       ///
       /// Locales: en
@@ -149,10 +153,26 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en
       static let add_or_edit_segment_income_title = Rswift.StringResource(key: "add_or_edit_segment_income_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Missing Data
+      ///
+      /// Locales: en
+      static let error_missing_data_title = Rswift.StringResource(key: "error_missing_data_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: Ok
       ///
       /// Locales: en
       static let general_ok = Rswift.StringResource(key: "general_ok", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Please select an account type.
+      ///
+      /// Locales: en
+      static let no_account_selected_error = Rswift.StringResource(key: "no_account_selected_error", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Please select an category type.
+      ///
+      /// Locales: en
+      static let no_category_selected_error = Rswift.StringResource(key: "no_category_selected_error", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Please set an amount.
+      ///
+      /// Locales: en
+      static let no_amount_selected_error = Rswift.StringResource(key: "no_amount_selected_error", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: Select Account
       ///
       /// Locales: en
@@ -161,6 +181,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en
       static let add_or_edit_category_placeholder = Rswift.StringResource(key: "add_or_edit_category_placeholder", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+      /// en translation: Update Booking
+      ///
+      /// Locales: en
+      static let add_or_edit_account_update_action = Rswift.StringResource(key: "add_or_edit_account_update_action", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
       /// en translation: dividends
       ///
       /// Locales: en
@@ -189,6 +213,21 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en
       static let expense_category_tax = Rswift.StringResource(key: "expense_category_tax", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en"], comment: nil)
+
+      /// en translation: Add Booking
+      ///
+      /// Locales: en
+      static func add_or_edit_account_add_action(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("add_or_edit_account_add_action", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "add_or_edit_account_add_action"
+        }
+
+        return NSLocalizedString("add_or_edit_account_add_action", bundle: bundle, comment: "")
+      }
 
       /// en translation: Bank Account
       ///
@@ -340,6 +379,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("add_or_edit_segment_income_title", bundle: bundle, comment: "")
       }
 
+      /// en translation: Missing Data
+      ///
+      /// Locales: en
+      static func error_missing_data_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("error_missing_data_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "error_missing_data_title"
+        }
+
+        return NSLocalizedString("error_missing_data_title", bundle: bundle, comment: "")
+      }
+
       /// en translation: Ok
       ///
       /// Locales: en
@@ -353,6 +407,51 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("general_ok", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Please select an account type.
+      ///
+      /// Locales: en
+      static func no_account_selected_error(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("no_account_selected_error", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "no_account_selected_error"
+        }
+
+        return NSLocalizedString("no_account_selected_error", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Please select an category type.
+      ///
+      /// Locales: en
+      static func no_category_selected_error(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("no_category_selected_error", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "no_category_selected_error"
+        }
+
+        return NSLocalizedString("no_category_selected_error", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Please set an amount.
+      ///
+      /// Locales: en
+      static func no_amount_selected_error(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("no_amount_selected_error", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "no_amount_selected_error"
+        }
+
+        return NSLocalizedString("no_amount_selected_error", bundle: bundle, comment: "")
       }
 
       /// en translation: Select Account
@@ -383,6 +482,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("add_or_edit_category_placeholder", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Update Booking
+      ///
+      /// Locales: en
+      static func add_or_edit_account_update_action(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("add_or_edit_account_update_action", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "add_or_edit_account_update_action"
+        }
+
+        return NSLocalizedString("add_or_edit_account_update_action", bundle: bundle, comment: "")
       }
 
       /// en translation: dividends

@@ -34,3 +34,12 @@
 "add_or_edit_amount_placeholder" = "Enter Amount";
 "add_or_edit_category_placeholder" = "Select Category";
 "add_or_edit_account_placeholder" = "Select Account";
+
+
+"add_or_edit_account_update_action" = "Update Booking";
+"add_or_edit_account_add_action" = "Add Booking";
+
+"error_missing_data_title" = "Missing Data";
+"no_account_selected_error" = "Please select an account type.";
+"no_amount_selected_error" = "Please set an amount.";
+"no_category_selected_error" = "Please select an category type.";

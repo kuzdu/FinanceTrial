@@ -10,12 +10,9 @@ import Foundation
 import UIKit
 
 class Alerts {
-    static func showTextAlert(viewController: UIViewController, title: String, message: String, completion: (() -> Void)? = nil) {
+    static func showTextAlert(viewController: UIViewController, title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
-        
-        alert.addAction(UIAlertAction(title: R.string.localizable.general_ok(), style: .default, handler: { (action) in
-            completion?()
-        }))
+        alert.addAction(UIAlertAction(title: R.string.localizable.general_ok(), style: .default, handler: nil))
         viewController.present(alert, animated: true, completion: nil)
     }
 }
